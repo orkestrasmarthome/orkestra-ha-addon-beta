@@ -3,7 +3,7 @@
 # (orkestra/config.yaml). Monorepo CI syncs this file there after each image build.
 # Docs: https://developers.home-assistant.io/docs/add-ons/configuration
 name: Orkestra Staging
-version: "1.2.47"
+version: "1.2.48"
 slug: orkestra_staging
 description: Orkestra development build for local testing and development against the staging API.
 url: https://github.com/orkestrasmarthome/orkestra-ha-addon
@@ -30,7 +30,7 @@ options:
   home_assistant_url: "http://supervisor/core"
   home_assistant_token: ""
   orkestra_cloud_url: "https://staging-api.orkestra-assistant.com"
-  orkestra_portal_url: ""
+  orkestra_portal_url: "https://staging.orkestra-assistant.com"
   orkestra_instance_token: ""
 schema:
   home_assistant_url: str
