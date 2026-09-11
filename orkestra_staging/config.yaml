@@ -28,10 +28,15 @@ homeassistant_api: true
 # Supervisor API — required for host LAN IP discovery (`GET /network/info`)
 hassio_api: true
 
-# Expose Brain HTTP on the host so LAN clients can reach `http://<lan-ip>:3001`
+# Expose Brain HTTP on the host so LAN clients can reach `http://<lan-ip>:3002`
 # (Ingress remains the primary HA sidebar entrypoint).
+# Host 3002 avoids clash with production Orkestra on 3001.
 ports:
-  3001/tcp: 3001
+  3001/tcp: 3002
+
+# Advertise host 3002 in Home.localEndpoint (container still listens on 3001).
+environment:
+  HOST_PORT: "3002"
 
 # User-configurable options (written to /data/options.json by the Supervisor)
 options:
