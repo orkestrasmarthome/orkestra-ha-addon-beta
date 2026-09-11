@@ -3,7 +3,7 @@
 # (orkestra/config.yaml). Monorepo CI syncs this file there after each image build.
 # Docs: https://developers.home-assistant.io/docs/add-ons/configuration
 name: Orkestra Staging
-version: "1.2.106"
+version: "1.2.107"
 slug: orkestra_staging
 description: Orkestra development build for local testing and development against the staging API.
 url: https://github.com/orkestrasmarthome/orkestra-ha-addon
@@ -31,7 +31,7 @@ homeassistant_api: true
 # Supervisor API — required for host LAN IP discovery (`GET /network/info`)
 hassio_api: true
 
-# Expose Brain HTTP on the host so LAN clients can reach `http://<lan-ip>:3001`
+# Expose Brain HTTP on the host so LAN clients can reach `http://<lan-ip>:3002`
 # (Ingress remains the primary HA sidebar entrypoint).
 # NOTE: Staging CI remaps this to `3001/tcp: 3002` (+ HOST_PORT) when syncing
 # orkestra-ha-addon-beta so Production and Staging can share one HA host.
@@ -40,12 +40,14 @@ ports:
 
 # User-configurable options (written to /data/options.json by the Supervisor)
 options:
+  host_port: "3002"
   home_assistant_url: "http://supervisor/core"
   home_assistant_token: ""
   orkestra_cloud_url: "https://staging-api.orkestra-assistant.com"
   orkestra_portal_url: "https://staging.orkestra-assistant.com"
   orkestra_instance_token: ""
 schema:
+  host_port: str?
   home_assistant_url: str
   home_assistant_token: str?
   orkestra_cloud_url: url
