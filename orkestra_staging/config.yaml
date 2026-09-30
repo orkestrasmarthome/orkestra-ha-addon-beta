@@ -3,7 +3,7 @@
 # (orkestra/config.yaml). Monorepo CI syncs this file there after each image build.
 # Docs: https://developers.home-assistant.io/docs/add-ons/configuration
 name: Orkestra Staging
-version: "1.3.8"
+version: "1.4.10"
 slug: orkestra_staging
 description: Orkestra development build for local testing and development against the staging API.
 url: https://github.com/orkestrasmarthome/orkestra-ha-addon
@@ -20,7 +20,7 @@ init: false
 # Ingress sidebar panel — shown for new installs when ingress + panel_* are set.
 # Auto-update is intentionally omitted: Supervisor only allows users to opt in manually.
 ingress: true
-ingress_port: 3001
+ingress_port: 13791
 panel_icon: "mdi:home-lightning-bolt"
 panel_title: "Orkestra Staging"
 panel_admin: false
@@ -33,10 +33,10 @@ hassio_api: true
 
 # Expose Brain HTTP on the host so LAN clients can reach `http://<lan-ip>:3002`
 # (Ingress remains the primary HA sidebar entrypoint).
-# NOTE: Staging CI remaps this to `3001/tcp: 3002` (+ HOST_PORT) when syncing
+# NOTE: Staging CI remaps this to `13791/tcp: 3002` (+ HOST_PORT) when syncing
 # orkestra-ha-addon-beta so Production and Staging can share one HA host.
 ports:
-  3001/tcp: 3002
+  13791/tcp: 3002
 
 # User-configurable options (written to /data/options.json by the Supervisor)
 options:
@@ -47,6 +47,7 @@ options:
   orkestra_portal_url: "https://staging.orkestra-assistant.com"
   orkestra_instance_token: ""
   CLERK_JWT_KEY: ""
+  CLERK_PUBLISHABLE_KEY: ""
 schema:
   host_port: str?
   home_assistant_url: str
@@ -55,6 +56,7 @@ schema:
   orkestra_portal_url: str?
   orkestra_instance_token: password?
   CLERK_JWT_KEY: str?
+  CLERK_PUBLISHABLE_KEY: str?
 
 environment:
   HOST_PORT: "3002"
